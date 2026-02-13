@@ -55,7 +55,7 @@ Before you begin, make sure you have the following installed:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Police_bharti_App.git
+git clone https://github.com/Yogesh-017/Police_bharti_App.git
 ```
 
 ### Step 2: Open in Android Studio
