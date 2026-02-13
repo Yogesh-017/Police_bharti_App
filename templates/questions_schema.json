@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Police Bharti PYQ Question Upload Schema",
+  "description": "JSON schema for uploading questions to the Police Bharti PYQ app. Use this to validate question data before import.",
+  "type": "object",
+  "required": ["pack", "questions"],
+  "properties": {
+    "pack": {
+      "type": "object",
+      "required": ["district", "year", "set_name"],
+      "properties": {
+        "district":  { "type": "string", "description": "Maharashtra district name" },
+        "year":      { "type": "integer", "minimum": 2000, "maximum": 2099 },
+        "set_name":  { "type": "string", "description": "Paper set identifier, e.g. Set A" }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "question_no", "question_text",
+          "option_a", "option_b", "option_c", "option_d",
+          "correct_option"
+        ],
+        "properties": {
+          "question_no":    { "type": "integer", "minimum": 1 },
+          "question_text":  { "type": "string", "minLength": 1 },
+          "option_a":       { "type": "string" },
+          "option_b":       { "type": "string" },
+          "option_c":       { "type": "string" },
+          "option_d":       { "type": "string" },
+          "correct_option": { "type": "string", "enum": ["A", "B", "C", "D"] },
+          "explanation":    { "type": "string", "default": "" },
+          "language":       { "type": "string", "enum": ["mr", "en", "hi"], "default": "mr" },
+          "tags":           { "type": "string", "default": "" }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "pack": { "district": "Pune", "year": 2023, "set_name": "Set A" },
+      "questions": [
+        {
+          "question_no": 1,
+          "question_text": "महाराष्ट्र राज्याची स्थापना कोणत्या वर्षी झाली?",
+          "option_a": "1950",
+          "option_b": "1956",
+          "option_c": "1960",
+          "option_d": "1962",
+          "correct_option": "C",
+          "explanation": "महाराष्ट्र राज्याची स्थापना 1 मे 1960 रोजी झाली.",
+          "language": "mr",
+          "tags": "history;state"
+        }
+      ]
+    }
+  ]
+}
